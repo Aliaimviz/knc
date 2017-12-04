@@ -1,0 +1,71 @@
+{
+	"name": "ozdemirburak/laravel-5-simple-cms",
+	"description": "Simple Laravel 5 CMS (Content Management System) for starters.",
+	"keywords": ["php", "laravel", "cms"],
+	"license": "MIT",
+	"type": "project",
+	"require": {
+		"php": ">=7.0",
+		"barryvdh/laravel-elfinder": "~0.3",
+		"barryvdh/laravel-snappy": "~0.3.3",
+		"baum/baum": "~1.1",
+		"caffeinated/menus": "~3.0",
+		"cviebrock/eloquent-sluggable": "~4.2",
+		"h4cc/wkhtmltoimage-amd64": "~0.12",
+		"h4cc/wkhtmltopdf-amd64": "~0.12",
+		"kris/laravel-form-builder": "~1.11.0",
+		"laracasts/flash": "~2.0",
+		"laravel/framework": "5.4.*",
+		"laravelcollective/html": "5.4.*",
+		"predis/predis": "~1.1",
+		"spatie/laravel-analytics": "~2.4",
+		"spatie/laravel-backup": "~3.10",
+		"watson/sitemap": "~2.0",
+		"yajra/laravel-datatables-buttons": "~1.1",
+		"yajra/laravel-datatables-oracle": "7.0.x-dev"
+	},
+	"require-dev": {
+		"barryvdh/laravel-debugbar": "~2.0",
+		"barryvdh/laravel-ide-helper": "~2.0",
+		"doctrine/dbal": "~2.5",
+		"fzaninotto/faker": "~1.4",
+		"laracasts/generators": "dev-master",
+		"laravel/browser-kit-testing": "^1.0",
+		"mockery/mockery": "~0.9",
+		"phpunit/phpunit": "~5.7"
+	},
+	"autoload": {
+		"classmap": [
+			"database"
+		],
+		"psr-4": {
+			"App\\": "app/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
+		}
+	},
+	"scripts": {
+		"post-root-package-install": [
+			"php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+		],
+		"post-create-project-cmd": [
+			"php artisan key:generate"
+		],
+		"post-install-cmd": [
+			"Illuminate\\Foundation\\ComposerScripts::postInstall",
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"Illuminate\\Foundation\\ComposerScripts::postUpdate",
+			"php artisan optimize",
+			"php artisan elfinder:publish"
+		]
+	},
+	"config": {
+		"preferred-install": "dist",
+		"sort-packages": true
+	}
+}
